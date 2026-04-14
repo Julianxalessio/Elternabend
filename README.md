@@ -1,1 +1,1 @@
-Basic Java Calculator
+Java Taschenrechner mit Punkt vor Strich Logik
