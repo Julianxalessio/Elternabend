@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class eval {
     public static void main(String[] args) {
-        String input = "3+5*2-8/4.445";
+        String input = "1+2*3+2.5";
         String result = calculate(input);
         System.out.println("Result: " + result);
     }
