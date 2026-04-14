@@ -8,7 +8,7 @@ public class eval {
     public static String calculate(String input) {
         String[] tokens = input.split("(?<=[+\\-*/])|(?=[+\\-*/])");
 
-        float result = 0;
+        ArrayList<Float> zahlen = new ArrayList<>();
         char lastOperator = '+';
 
         for (String token : tokens) {
@@ -17,11 +17,30 @@ public class eval {
             } else {
                 float number = Float.parseFloat(token);
 
-                if (lastOperator == '+') result += number;
-                else if (lastOperator == '-') result -= number;
-                else if (lastOperator == '*') result *= number;
-                else if (lastOperator == '/') result /= number;
+                if (lastOperator == '+') {
+                    zahlen.add(number);
+                } 
+                else if (lastOperator == '-') {
+                    zahlen.add(-number);
+                } 
+                else if (lastOperator == '*') {
+                    float last = zahlen.remove(zahlen.size() - 1);
+                    zahlen.add(last * number);
+                } 
+                else if (lastOperator == '/') {
+                    float last = zahlen.remove(zahlen.size() - 1);
+                    if (number == 0) {
+                        return "Fehler: Division durch 0";
+                    }
+                    zahlen.add(last / number);
+                }
             }
+        }
+
+        // Am Ende alles addieren
+        float result = 0;
+        for (float zahl : zahlen) {
+            result += zahl;
         }
 
         return String.valueOf(result);
