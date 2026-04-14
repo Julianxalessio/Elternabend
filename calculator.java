@@ -4,6 +4,9 @@ public class calculator {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
+    String input = null;
+    String result = null;
+
     // ANSI-Farben
     final String RESET = "\u001B[0m";
     final String RED = "\u001B[31m";
@@ -13,6 +16,11 @@ public class calculator {
     System.out.println(GREEN + "╔════════════════════════════╗");
     System.out.println(GREEN + "║     JAVA TASCHENRECHNER    ║");
     System.out.println(GREEN + "╚════════════════════════════╝");
+
+
+
+    System.out.println("\nVerlauf:\n");
+    System.out.println(input + " = " + result);
     
     while (true) {
         System.out.println(GREEN + "Geben sie ihre Rechnung ein:");
@@ -22,14 +30,14 @@ public class calculator {
           System.out.println(CYAN + "\nKeine weitere Eingabe gefunden. Programm beendet.");
           break;
         }
-        String input = scanner.nextLine();
+        input = scanner.nextLine();
         input = input.replace(",", ".");
         if (!input.matches("[0-9+\\-*/.]+")) {
             System.out.println(RED + "Ungültige Eingabe. Bitte nur Zahlen und Operatoren verwenden die oben definiert wurden.");
             System.out.println();
             System.out.println();
         } else {
-            String result = eval.calculate(input);
+            result = eval.calculate(input);
             System.out.println(CYAN + "Ergebnis: " + result);
           try {
             Thread.sleep(1000); // 1 Sekunde warten, damit der Benutzer das Ergebnis sehen kann
