@@ -15,11 +15,6 @@ public class db {
     String user = "ubuntu";
     String password = "dildodo64";
 
-    public static void main(String[] args) {
-        db database = new db();
-        database.download();
-    }
-
     public void upload(String input) {
         try {
             // Treiber explizit laden
@@ -30,7 +25,6 @@ public class db {
                  PreparedStatement stmt = conn.prepareStatement("INSERT INTO inputs (input) VALUES (?)")) {
                 stmt.setString(1, input);
                 stmt.executeUpdate();
-                System.out.println("Eingabe erfolgreich hochgeladen!");
             }
         } catch (ClassNotFoundException e) {
             System.err.println("MySQL-Treiber nicht gefunden: " + e.getMessage());
@@ -53,7 +47,6 @@ public class db {
                         String input = rs.getString("input");
                         ablage[i] = input;
                         i++;
-                        return ablage;
                     }
                     return ablage;
                 }
