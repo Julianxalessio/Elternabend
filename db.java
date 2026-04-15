@@ -39,24 +39,29 @@ public class db {
         }
     }
 
-    public void download() {
+    public String[] download() {
         try {
                 // Treiber explizit laden
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                
+                String[] ablage = new String[10];
                 // Try-with-resources für automatisches Schließen
                 try (Connection conn = DriverManager.getConnection(url, user, password);
-                    PreparedStatement stmt = conn.prepareStatement("SELECT input FROM inputs")) {
+                    PreparedStatement stmt = conn.prepareStatement("SELECT input FROM inputs ORDER BY id DESC LIMIT 10")) {
                     var rs = stmt.executeQuery();
-                    while (rs.next()) {
+                    int i = 0;
+                    while (rs.next() && i < 10) {
                         String input = rs.getString("input");
-                        System.out.println("Eingabe: " + input);
+                        ablage[i] = input;
+                        i++;
+                        return ablage;
                     }
+                    return ablage;
                 }
             } catch (ClassNotFoundException e) {
                 System.err.println("MySQL-Treiber nicht gefunden: " + e.getMessage());
             } catch (SQLException e) {
                 System.err.println("Fehler beim Herunterladen: " + e.getMessage());
             }
+        return null;
     }
 }
