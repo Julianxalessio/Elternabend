@@ -1,1 +1,1 @@
-Java Taschenrechner mit Punkt vor Strich Logik
+Java Taschenrechner mit Punkt vor Strich Logik und Rechnungsverlauf
