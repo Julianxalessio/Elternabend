@@ -46,7 +46,9 @@ public class calculator {
             System.out.println();
         }
     }
-    db.upload();
+    String Rechnung = (input + " = " + result);
+    
+    db.upload(Rechnung);
     
     System.out.println(RESET);
     scanner.close();
