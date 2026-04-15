@@ -17,10 +17,7 @@ public class calculator {
     System.out.println(GREEN + "║     JAVA TASCHENRECHNER    ║");
     System.out.println(GREEN + "╚════════════════════════════╝");
 
-
-
-    System.out.println("\nVerlauf:\n");
-    System.out.println(input + " = " + result);
+    db.download();
     
     while (true) {
         System.out.println(GREEN + "Geben sie ihre Rechnung ein:");
@@ -49,6 +46,8 @@ public class calculator {
             System.out.println();
         }
     }
+    db.upload();
+    
     System.out.println(RESET);
     scanner.close();
   }
