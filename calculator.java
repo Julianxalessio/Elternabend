@@ -34,6 +34,12 @@ public class calculator {
           int i = 1;
           String[] old_inputs = db.download();
           System.out.println(CYAN + "Letzte 10 Eingaben:");
+          if (old_inputs == null || old_inputs.length == 0) {
+            System.out.println(CYAN + "Keine gespeicherten Eingaben gefunden.");
+            System.out.println();
+            Thread.sleep(1000);
+            continue;
+          }
           for (String old_input : old_inputs) {
             if (old_input != null) {
               System.out.println(CYAN + i + ". " + old_input);

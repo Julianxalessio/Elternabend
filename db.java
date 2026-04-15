@@ -34,10 +34,10 @@ public class db {
     }
 
     public String[] download() {
+        String[] ablage = new String[10];
         try {
                 // Treiber explizit laden
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                String[] ablage = new String[10];
                 // Try-with-resources für automatisches Schließen
                 try (Connection conn = DriverManager.getConnection(url, user, password);
                     PreparedStatement stmt = conn.prepareStatement("SELECT input FROM inputs ORDER BY id DESC LIMIT 10")) {
@@ -55,6 +55,6 @@ public class db {
             } catch (SQLException e) {
                 System.err.println("Fehler beim Herunterladen: " + e.getMessage());
             }
-        return null;
+        return ablage;
     }
 }
